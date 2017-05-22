@@ -5,6 +5,7 @@ Created on Sun May 21 10:57:46 2017
 @author: Ravindra kompella
 """
 
+
 import matplotlib
 import matplotlib.pyplot as plt
 import random
@@ -20,6 +21,7 @@ def initializeX(examples):
     X[:,1] = np.random.uniform(-1, 1, examples)
     return X
 
+# initialize X with N=10 examples
 X = initializeX(10)
 print('this is input X', X)
 
@@ -70,8 +72,11 @@ def sign(a):
     else:
         return -1
 
+#initialize h (hypothesis with all zeros)
+h = np.zeros([10,1])
+    
 # determine final weights
-def computeWeights(iter,w):   
+def computeWeights(iter,w,h):   
     for n in range(0,iter):
         # find the index of the row where hypothesis doesnt match target output.
         # This gives the index of the first misclassified point by hypothesis.    
@@ -85,7 +90,7 @@ def computeWeights(iter,w):
             break
     return w
 
-w = computeWeights(15,initW)
+w = computeWeights(15,initW,h)
 
 le = lambda x : (-w[0,0]-w[0,1]*x)/w[0,2]
 xrange = np.arange(-1,1,0.1)
